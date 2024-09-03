@@ -61,7 +61,7 @@ int deleteNode(node*& data, int index) {
 			return -1;
 		}
 		//check if there is a node after target
-		else if (tmp->next->next = nullptr) {
+		else if (tmp->next->next == nullptr) {
 			delete tmp->next;
 			tmp->next = nullptr;
 		}
@@ -139,10 +139,10 @@ int main() {
 	cout << "Insert Index: ";
 	cin >> index;
 
-	//int result = insert(head, index);
+	int result = insert(head, index);
 	node* temp = head;
 	//results for inserting node
-	/*
+	
 	if (result == 0) {
 		cout << "New Linked List\n";
 		while (temp != nullptr) {
@@ -153,7 +153,7 @@ int main() {
 	else {
 		cout << "An Error has occured. Linked List did NOT change\n";
 	}
-*/
+
 	cout << "\n----DELETE---------\n";
 	cout << "Index: ";
 	cin >> index; 
