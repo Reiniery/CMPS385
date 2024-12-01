@@ -11,27 +11,27 @@ struct Edge {
 	int weight;
 	Edge(int d, int w) :dest(d), weight(w) {}
 };
-struct vertex {
+struct Vertex {
 	int id;
 	int distance;
-	vertex(int i, int d) : id(i), distance(d) {}
+	Vertex(int i, int d) : id(i), distance(d) {}
 };
 
 //maintains min heap
 struct compareDist {
-	bool operator()(const vertex& a, const vertex& b) {
+	bool operator()(const Vertex& a, const Vertex& b) {
 		return a.distance > b.distance;
 	}
 };
 
 void dijkstra(const unordered_map<int, vector<Edge>>& graph, int start) {
-	priority_queue<vertex, vector<vertex>, compareDist> pq;
+	priority_queue<Vertex, vector<Vertex>, compareDist> pq;
 
 	unordered_map<int, int> distances;
 	unordered_map<int, int> prev;
 	unordered_set<int> nodes; //keep track of all nodes
 
-	
+
 	for (auto& pair : graph) {
 		int node = pair.first;
 		nodes.insert(node);
@@ -48,11 +48,11 @@ void dijkstra(const unordered_map<int, vector<Edge>>& graph, int start) {
 
 	distances[start] = 0;
 
-	pq.push(vertex(start, 0));
+	pq.push(Vertex(start, 0));
 
 	//go through queue
 	while (!pq.empty()) {
-		vertex currVertex = pq.top();
+		Vertex currVertex = pq.top();
 		pq.pop();
 		int current = currVertex.id;
 		int currDist = currVertex.distance;
@@ -70,14 +70,14 @@ void dijkstra(const unordered_map<int, vector<Edge>>& graph, int start) {
 				if (newDist < distances[neighbor]) {
 					distances[neighbor] = newDist;
 					prev[neighbor] = current;
-					pq.push(vertex(neighbor, newDist));
+					pq.push(Vertex(neighbor, newDist));
 
 				}
 			}
 		}
 	}
 	// print shortest distances weight from start
-	cout << "Shortest distances from vertex " << start << ":" << endl;
+	cout << "Shortest distances from Vertex " << start << ":" << endl;
 	for (auto& pair : distances) {
 		cout << "Vertex " << pair.first << " : ";
 		if (pair.second == INT_MAX) {
@@ -93,7 +93,6 @@ void dijkstra(const unordered_map<int, vector<Edge>>& graph, int start) {
 
 int main() {
 	unordered_map<int, vector<Edge>> graph;
-
 	// add edges to the graph
 	//v 0
 	graph[0].emplace_back(1, 2);
